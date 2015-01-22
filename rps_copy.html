@@ -1,0 +1,180 @@
+<html>
+<head>
+    <title></title>
+    <style>
+
+        .square {
+            border: 1px solid black;
+            display: inline-block;
+            width: 50%;
+            height: 50px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #box {
+            border: 3px solid black;
+            display: inline-block;
+            text-align: center;
+            font-size: 24px;
+            font-family: arial;
+            width: 50%;
+            height: 50px;
+            position: fixed;
+            top: 250px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-transform: uppercase;
+        }
+        #text {
+            text-align: center;
+            font-size: 60px;
+            font-family: arial;
+            font-weight: bold;
+            -webkit-text-stroke: 1px white;
+            width: 500px;
+            height: 50px;
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #return {
+            text-align: center;
+            font-size: 80px;
+            font-family: arial;
+            font-weight: bold;
+            -webkit-text-stroke: 1px white;
+            width: 500px;
+            height: 50px;
+            position: fixed;
+            top: 405px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #submit {
+            text-align: center;
+            font-size: 20px;
+            font-family: arial;
+            font-weight: bold;
+            background-color: white;
+            border-radius: 5px;
+            border: 2px solid black;
+            width: 90px;
+            height: 30px;
+            position: fixed;
+            top: 325px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .playAgain {
+            text-align: center;
+            font-size: 20px;
+            font-family: arial;
+            font-weight: bold;
+            background-color: white;
+            border-radius: 5px;
+            border: 2px solid black;
+            width: 150px;
+            height: 30px;
+            position: fixed;
+            top: 385px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+	<body onload= "changeColor()">
+	<body id="z"></body>
+    <div id="text">Rock, Paper, or Scissors?</div>
+
+    <!-- FORM -->
+    <Form id="myForm">
+
+        <!-- TEXT BOX -->
+        <input type="text" id="box" name="myAnswer" value="" autofocus />
+
+        <!-- SUBMIT -->
+        <input type="button" id="submit" value="Submit" onclick="this.form.reset()" />
+
+    </form>
+
+    <!-- PLAY AGAIN -->
+    <button onclick="reload()" class="playAgain">Color Swap!</button>
+
+    <h1 id="return"></h1>
+
+    <script type="text/javascript">
+
+        var changeColor = function(){
+                document.getElementById("z").style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            }
+        function reload() {
+            location.reload();
+        }
+
+
+        document.getElementById("myForm").onsubmit = function () {
+            return false;
+        };
+
+        document.getElementById("submit").onclick = function() {
+
+            x = document.getElementById("box").value;
+        
+            x = x.toUpperCase();
+
+            document.getElementById("myForm").reset();
+
+            var randNum = Math.random()*3;
+
+            y = Math.floor(randNum);
+
+            if (y == 0) {
+                y = "ROCK";
+            }
+            else if (y == 1) {
+                y = "PAPER";
+            }
+            else
+                y = "SCISSORS";
+        
+
+            if (x == y) {
+                document.getElementById("return").innerHTML = "TIE!";
+            }
+            else if (x == "ROCK") {
+                if (y == "SCISSORS") {
+                    document.getElementById("return").innerHTML = "YOU WIN!";
+                }
+                else {
+                    document.getElementById("return").innerHTML = "YOU LOSE!"
+                }
+            }
+            else if (x == "PAPER") {
+                if (y == "ROCK") {
+                    document.getElementById("return").innerHTML = "YOU WIN!"
+                }
+                else {
+                    document.getElementById("return").innerHTML = "YOU LOSE!"
+                }
+            }
+            else if (x == "SCISSORS") {
+                if (y == "PAPER") {
+                    document.getElementById("return").innerHTML = "YOU WIN!"
+                }
+                else {
+                    document.getElementById("return").innerHTML = "YOU LOSE!"
+                }
+            }
+            else {
+                document.getElementById("return").innerHTML = "THAT'S NOT AN OPTION!!"
+            }
+        }
+    
+    </script>
+</body>
+</html>
